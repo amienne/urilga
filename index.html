@@ -1,697 +1,429 @@
+/* ==========================================
+   SUPABASE ХОЛБОЛТ
+   ========================================== */
 
-<!DOCTYPE html>
-<html lang="mn">
+const SUPABASE_URL = "https://kxjzdfhovwsucjkaufyp.supabase.co";
+const SUPABASE_KEY = "sb_publishable_CwZQlwt4uvzlm1Ay-aBDng_7LAWKxd0";
 
-<head>
-    <meta charset="UTF-8">
+const supabaseClient = window.supabase
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    : null;
 
-    <!-- Гар утас, таблет, компьютер дээр зөв хэмжээнд харагдуулах -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Сэвлэг үргээх ёслолын урилга">
+document.addEventListener("DOMContentLoaded", function () {
 
-    <title>Сэвлэг үргээх ёслолын урилга</title>
+    /* ==========================================
+       ELEMENTS
+       ========================================== */
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    const openingScreen = document.getElementById("openingScreen");
+    const mainInvitation = document.getElementById("mainInvitation");
+    const openInvitation = document.getElementById("openInvitation");
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    const backgroundMusic = document.getElementById("backgroundMusic");
+    const musicButton = document.getElementById("musicButton");
 
-    <!-- Үндсэн CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
 
-<body>
+    const decreaseChildren = document.getElementById("decreaseChildren");
+    const increaseChildren = document.getElementById("increaseChildren");
+    const childrenCount = document.getElementById("childrenCount");
 
-    <!-- ==========================================
-         01. MUSIC
-         ========================================== -->
+    const rsvpForm = document.getElementById("rsvpForm");
+    const guestName = document.getElementById("guestName");
+    const rsvpSuccess = document.getElementById("rsvpSuccess");
 
-    <audio id="backgroundMusic" loop>
-        <source
-            src="duu.mp3"
-            type="audio/mpeg"
-        >
-        Таны браузер audio элементийг дэмжихгүй байна.
-    </audio>
 
+    /* ==========================================
+       OPEN INVITATION
+       ========================================== */
 
-    <!-- Дуу асаах / зогсоох диск -->
-    <button id="musicButton" class="music-button" type="button" aria-label="Дуу тоглуулах эсвэл зогсоох">
-        <span class="music-disc">
-            <span class="disc-center"></span>
-        </span>
-    </button>
+    if (openInvitation) {
 
+        openInvitation.addEventListener("click", function () {
 
-    <!-- ==========================================
-         02. OPENING SCREEN
-         ========================================== -->
+            /*
+             * Opening screen-ийг бүрэн устгана.
+             * Ингэснээр арын хэсэг давхар харагдахгүй.
+             */
 
-    <!-- ==========================================
-     02. OPENING SCREEN
-     ========================================== -->
+            if (openingScreen) {
+                openingScreen.remove();
+            }
 
-    <section id="openingScreen" class="opening-screen">
 
-        <!-- Арын уламжлалт чимэглэл -->
+            /*
+             * Үндсэн урилгыг харуулна.
+             */
 
-        <div class="opening-bg">
+            if (mainInvitation) {
 
-            <!-- Зөөлөн гэрэл -->
-            <div class="bg-glow bg-glow-1"></div>
-            <div class="bg-glow bg-glow-2"></div>
-            <div class="bg-glow bg-glow-3"></div>
+                mainInvitation.classList.remove("hidden");
 
-            <!-- Үүлс -->
-            <div class="bg-cloud cloud-1"></div>
-            <div class="bg-cloud cloud-2"></div>
-            <div class="bg-cloud cloud-3"></div>
-            <div class="bg-cloud cloud-4"></div>
+                mainInvitation.style.display = "block";
+                mainInvitation.style.visibility = "visible";
+                mainInvitation.style.opacity = "1";
 
-            
+            }
 
-            <!-- Алтан хүрээ -->
-            <div class="opening-frame frame-top"></div>
-            <div class="opening-frame frame-bottom"></div>
-            <div class="opening-frame frame-left"></div>
-            <div class="opening-frame frame-right"></div>
 
-        </div>
+            /*
+             * Хуудасны дээд хэсгээс эхлүүлнэ.
+             */
 
+            window.scrollTo({
+                top: 0,
+                behavior: "instant"
+            });
 
-        <!-- ==========================================
-         ХӨДӨЛГӨӨНТ ЛУУ
-         ========================================== -->
 
-        <div class="opening-decoration dragon-decoration">
+            /*
+             * Хөгжим эхлүүлэх
+             */
 
-            <div class="dragon-wrapper">
+            if (backgroundMusic) {
 
-                <!-- Лууны зөөлөн гэрэл -->
-                <div class="dragon-glow"></div>
+                backgroundMusic.volume = 0.55;
 
-                <!-- Луу -->
-                <img src="dragon.png" alt="Луу жилийн бэлгэдэл" class="animated-dragon">
+                backgroundMusic.play()
+                    .then(function () {
 
-                <!-- Лууны эргэн тойрны үүл -->
-                <div class="dragon-cloud dragon-cloud-1"></div>
-                <div class="dragon-cloud dragon-cloud-2"></div>
-                <div class="dragon-cloud dragon-cloud-3"></div>
+                        if (musicButton) {
+                            musicButton.classList.add("playing");
+                        }
 
-            </div>
+                    })
+                    .catch(function (error) {
 
-        </div>
+                        console.log(
+                            "Хөгжим автоматаар эхлэх боломжгүй байна:",
+                            error
+                        );
 
+                    });
 
-        <!-- ==========================================
-         OPENING CONTENT
-         ========================================== -->
+            }
 
-        <div class="opening-content">
+        });
 
-            <p class="small-title">
-                ЛУУ ЖИЛИЙН
-            </p>
+    }
 
 
-            <h1>
-                Д.Ариунмэргэн
-            </h1>
+    /* ==========================================
+       MUSIC PLAY / PAUSE
+       ========================================== */
 
+    if (musicButton && backgroundMusic) {
 
-            <div class="opening-line"></div>
+        musicButton.addEventListener("click", function () {
 
+            if (backgroundMusic.paused) {
 
-            <p class="event-title">
-                СЭВЛЭГ ҮРГЭЭХ
-                <br> ЁСЛОЛЫН УРИЛГА
-            </p>
+                backgroundMusic.play()
+                    .then(function () {
 
+                        musicButton.classList.add("playing");
 
-            <!-- Хүүхдийн зураг -->
+                    })
+                    .catch(function (error) {
 
-            <div class="opening-photo">
+                        console.log("Music play error:", error);
 
-                <div class="photo-decoration photo-decoration-1"></div>
-                <div class="photo-decoration photo-decoration-2"></div>
+                    });
 
-                <img src="pic1.png" alt="Бяцхан хүүхдийн зураг">
+            } else {
 
-            </div>
+                backgroundMusic.pause();
 
+                musicButton.classList.remove("playing");
 
-            <!-- Урилга нээх товч -->
+            }
 
-            <button id="openInvitation" class="open-button" type="button">
-            УРИЛГА НЭЭХ
-        </button>
+        });
 
+    }
 
-            <!-- Доод уламжлалт чимэглэл -->
 
-            <div class="opening-bottom-decoration">
+    /* ==========================================
+       COUNTDOWN
+       ========================================== */
 
-                <span></span>
+    /*
+     * Монголын цаг:
+     * 2026 оны 10 сарын 4
+     * 11:00
+     */
 
-                <strong>◇</strong>
+    const eventDate = new Date(
+        "2026-10-04T11:00:00+08:00"
+    );
 
-                <span></span>
 
-            </div>
+    function updateCountdown() {
 
-        </div>
+        const now = new Date();
 
-    </section>
+        const difference = eventDate.getTime() - now.getTime();
 
 
-    <!-- ==========================================
-         03. MAIN INVITATION
-         ========================================== -->
+        /*
+         * Хугацаа дууссан бол
+         */
 
-    <main id="mainInvitation" class="main-invitation hidden">
+        if (difference <= 0) {
 
+            if (daysElement) daysElement.textContent = "00";
+            if (hoursElement) hoursElement.textContent = "00";
+            if (minutesElement) minutesElement.textContent = "00";
+            if (secondsElement) secondsElement.textContent = "00";
 
-        <!-- ======================================
-             HERO SECTION
-             ====================================== -->
+            return;
+        }
 
-        <section class="hero section">
 
-            <div class="hero-decoration dragon-symbol">
-                ЛУУ
-            </div>
+        const days = Math.floor(
+            difference / (1000 * 60 * 60 * 24)
+        );
 
-            <div class="hero-content">
+        const hours = Math.floor(
+            (difference / (1000 * 60 * 60)) % 24
+        );
 
-                <p class="eyebrow">
-                    ХҮНДЭТ ЗОЧИД ТА БҮХНИЙГ
-                </p>
+        const minutes = Math.floor(
+            (difference / (1000 * 60)) % 60
+        );
 
-                <h2>
-                    СЭВЛЭГ ҮРГЭЭХ
-                    <br> ЁСЛОЛ
-                </h2>
+        const seconds = Math.floor(
+            (difference / 1000) % 60
+        );
 
-                <div class="decorative-line">
-                    <span></span>
-                    <i></i>
-                    <span></span>
-                </div>
 
-                <p class="invitation-intro">
-                    Бяцхан үрийнхээ сэвлэгийг үргээж, монгол ёс заншлаа дээдлэн, ерөөл бэлгэдэлтэй сайхан өдрийг хамтдаа өнгөрүүлэхээр та бүхнийг хүндэтгэн урьж байна.
-                </p>
+        if (daysElement) {
+            daysElement.textContent =
+                String(days).padStart(2, "0");
+        }
 
-            </div>
+        if (hoursElement) {
+            hoursElement.textContent =
+                String(hours).padStart(2, "0");
+        }
 
-        </section>
+        if (minutesElement) {
+            minutesElement.textContent =
+                String(minutes).padStart(2, "0");
+        }
 
+        if (secondsElement) {
+            secondsElement.textContent =
+                String(seconds).padStart(2, "0");
+        }
 
-        <!-- ======================================
-             CHILD INFORMATION
-             ====================================== -->
+    }
 
-        <section class="child-section section">
 
-            <div class="section-inner">
+    updateCountdown();
 
-                <p class="section-label">
-                    БИДНИЙ БЯЦХАН ҮР
-                </p>
+    setInterval(
+        updateCountdown,
+        1000
+    );
 
-                <div class="child-photo">
 
-                    <img src="pic2.png" alt="Бяцхан үрийн зураг">
+    /* ==========================================
+       CHILDREN COUNT
+       ========================================== */
 
-                </div>
+    if (decreaseChildren && childrenCount) {
 
-                <h2 class="child-name">
-                    Бяцхан Ариунмэргэн
-                </h2>
+        decreaseChildren.addEventListener(
+            "click",
+            function () {
 
-                <p class="child-description">
-                    Луу жилтэн бяцхан үрийн сэвлэг үргээх ёслол
-                </p>
+                let current =
+                    Number(childrenCount.value) || 0;
 
-                <div class="dragon-divider">
-                    <span></span>
-                    <strong>ЛУУ</strong>
-                    <span></span>
-                </div>
+                if (current > 0) {
 
-            </div>
+                    current--;
 
-        </section>
+                    childrenCount.value = current;
 
+                }
 
-        <!-- ======================================
-             COUNTDOWN
-             ====================================== -->
+            }
+        );
 
-        <section class="countdown-section section">
+    }
 
-            <div class="section-inner">
 
-                <p class="section-label">
-                    ЁСЛОЛ БОЛОХОД
-                </p>
+    if (increaseChildren && childrenCount) {
 
-                <h2 class="countdown-title">
-                    ТУН УДАХГҮЙ
-                </h2>
+        increaseChildren.addEventListener(
+            "click",
+            function () {
 
-                <div id="countdown" class="countdown">
+                let current =
+                    Number(childrenCount.value) || 0;
 
-                    <div class="countdown-item">
-                        <span id="days" class="countdown-number">
-                            00
-                        </span>
+                if (current < 10) {
 
-                        <span class="countdown-label">
-                            ӨДӨР
-                        </span>
-                    </div>
+                    current++;
 
+                    childrenCount.value = current;
 
-                    <div class="countdown-separator">
-                        :
-                    </div>
+                }
 
+            }
+        );
 
-                    <div class="countdown-item">
-                        <span id="hours" class="countdown-number">
-                            00
-                        </span>
+    }
 
-                        <span class="countdown-label">
-                            ЦАГ
-                        </span>
-                    </div>
 
+    /* ==========================================
+       RSVP FORM
+       ========================================== */
 
-                    <div class="countdown-separator">
-                        :
-                    </div>
+    if (rsvpForm) {
 
+        rsvpForm.addEventListener(
+            "submit",
+            async function (event) {
 
-                    <div class="countdown-item">
-                        <span id="minutes" class="countdown-number">
-                            00
-                        </span>
+                event.preventDefault();
 
-                        <span class="countdown-label">
-                            МИНУТ
-                        </span>
-                    </div>
 
+                const name =
+                    guestName
+                        ? guestName.value.trim()
+                        : "";
 
-                    <div class="countdown-separator">
-                        :
-                    </div>
 
+                const attendanceElement =
+                    document.querySelector(
+                        'input[name="attendance"]:checked'
+                    );
 
-                    <div class="countdown-item">
-                        <span id="seconds" class="countdown-number">
-                            00
-                        </span>
 
-                        <span class="countdown-label">
-                            СЕКУНД
-                        </span>
-                    </div>
+                const children =
+                    childrenCount
+                        ? Number(childrenCount.value) || 0
+                        : 0;
 
-                </div>
 
-            </div>
+                if (!name) {
 
-        </section>
+                    alert(
+                        "Нэрээ оруулна уу."
+                    );
 
+                    return;
 
-        <!-- ======================================
-             EVENT DATE & TIME
-             ====================================== -->
+                }
 
-        <section class="event-section section">
 
-            <div class="section-inner">
+                if (!attendanceElement) {
 
-                <p class="section-label">
-                    ЁСЛОЛЫН ӨДӨР
-                </p>
+                    alert(
+                        "Та хүрэлцэн ирэх эсэхээ сонгоно уу."
+                    );
 
-                <h2 class="event-date">
-                    2026.10.04
-                </h2>
+                    return;
 
-                <p class="event-weekday">
-                    НЯМ ГАРАГ
-                </p>
+                }
 
-                <div class="event-time-box">
 
-                    <span class="time-icon">
-                        ◷
-                    </span>
+                /*
+                 * Supabase-руу мэдээллийг илгээнэ.
+                 */
 
-                    <div>
-                        <p class="time-label">
-                            ЭХЛЭХ ЦАГ
-                        </p>
+                if (!supabaseClient) {
 
-                        <p class="event-time">
-                            11:00
-                        </p>
-                    </div>
+                    alert(
+                        "Холболт бэлэн бус байна. Хуудсаа дахин ачаалаад дахин оролдоно уу."
+                    );
 
-                </div>
+                    return;
 
-            </div>
+                }
 
-        </section>
 
+                const submitButton =
+                    rsvpForm.querySelector(
+                        ".submit-button"
+                    );
 
-        <!-- ======================================
-             LOCATION
-             ====================================== -->
+                if (submitButton) {
 
-        <section class="location-section section">
+                    submitButton.disabled = true;
 
-            <div class="section-inner">
+                    submitButton.textContent =
+                        "ИЛГЭЭЖ БАЙНА...";
 
-                <p class="section-label">
-                    ЁСЛОЛ БОЛОХ ГАЗАР
-                </p>
+                }
 
-               <h2 class="location-name">
-    Өнөр хотхон
-    <br>
-    101-82
-</h2>
 
-                <p class="location-address">
-                    Эрдэнэт хот
-                    <br> Монгол Улс
-                </p>
+                const { error } =
+                    await supabaseClient
+                        .from("rsvp")
+                        .insert([
+                            {
+                                guest_name: name,
+                                attendance: attendanceElement.value,
+                                children_count: children
+                            }
+                        ]);
 
-               <a
-    href="https://maps.app.goo.gl/TNpvmKVrSUS7R5XA6"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="map-button"
->
-    ГАЗРЫН ЗУРАГ ХАРАХ
-</a>
 
-            </div>
+                if (submitButton) {
 
-        </section>
+                    submitButton.disabled = false;
 
+                    submitButton.textContent =
+                        "ХАРИУ ИЛГЭЭХ";
 
-        <!-- ======================================
-             PHOTO GALLERY
-             ====================================== -->
+                }
 
-        <section class="gallery-section section">
 
-            <div class="section-inner">
+                if (error) {
 
-                <p class="section-label">
-                    БЯЦХАН ҮРИЙН ДУРСАМЖ
-                </p>
+                    console.error(
+                        "Supabase алдаа:",
+                        error
+                    );
 
-                <h2 class="gallery-title">
-                    БИДНИЙ БЯЦХАН
-                    <br> АЗ ЖАРГАЛ
-                </h2>
+                    alert(
+                        "Уучлаарай, илгээхэд алдаа гарлаа. Дахин оролдоно уу."
+                    );
 
-                <div class="gallery">
+                    return;
 
-                    <div class="gallery-item gallery-large">
-                        <img src="pic3.png" alt="Бяцхан үрийн дурсамж" loading="lazy">
-                    </div>
+                }
 
-                    <div class="gallery-item">
-                        <img src="nyraiahtaigaa.jpeg" alt="Бяцхан үрийн дурсамж" loading="lazy">
-                    </div>
 
-                    <div class="gallery-item">
-                        <img src="nyrai.jpeg" alt="Бяцхан үрийн дурсамж" loading="lazy">
-                    </div>
+                if (rsvpSuccess) {
 
-                    <div class="gallery-item">
-                        <img src="1year.png" alt="Бяцхан үрийн дурсамж" loading="lazy">
-                    </div>
+                    rsvpSuccess.classList.remove(
+                        "hidden"
+                    );
 
-                </div>
+                }
 
-            </div>
 
-        </section>
+                rsvpForm.reset();
 
 
-        <!-- ======================================
-             INVITATION MESSAGE
-             ====================================== -->
+                if (childrenCount) {
 
-        <section class="message-section section">
+                    childrenCount.value = 0;
 
-            <div class="section-inner">
+                }
 
-                <div class="message-decoration">
-                    ❈
-                </div>
+            }
+        );
 
-                <p class="invitation-message">
+    }
 
-                    Эрхэм хүндэт төрөл төрөгсөд, ахан дүүс, найз нөхөд та бүхнийг
-
-                    <br><br> бидний бяцхан үрийн сэвлэг үргээх ёслолд хүрэлцэн ирж,
-
-                    <br><br> ерөөл бэлэгтэй сайхан үгсээрээ бяцхан үрийг минь мялаан,
-
-                    <br><br> баярт өдрийг маань хамтдаа хуваалцахыг хүндэтгэн урьж байна.
-
-                </p>
-
-                <div class="message-decoration">
-                    ❈
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             RSVP
-             ====================================== -->
-
-        <section id="rsvp" class="rsvp-section section">
-
-            <div class="section-inner">
-
-                <p class="section-label">
-                    ХҮРЭЛЦЭН ИРЭХЭЭ
-                </p>
-
-                <h2 class="rsvp-title">
-                    БАТАЛГААЖУУЛНА УУ
-                </h2>
-
-                <p class="rsvp-description">
-                    Та бүхний хариу бидний бэлтгэл ажилд чухал ач холбогдолтой.
-                </p>
-
-
-                <form id="rsvpForm" class="rsvp-form">
-
-                    <!-- Нэр -->
-
-                    <div class="form-group">
-
-                        <label for="guestName">
-                            Таны нэр
-                        </label>
-
-                        <input type="text" id="guestName" name="guestName" placeholder="Нэрээ оруулна уу" required>
-
-                    </div>
-
-
-                    <!-- RSVP сонголт -->
-
-                    <div class="form-group">
-
-                        <p class="form-label">
-                            Таны хариу
-                        </p>
-
-                        <div class="radio-group">
-
-                            <label class="radio-option">
-
-                                <input
-                                    type="radio"
-                                    name="attendance"
-                                    value="attending"
-                                    required
-                                >
-
-                                <span>
-                                    Хүрэлцэн ирнэ
-                                </span>
-
-                            </label>
-
-
-                            <label class="radio-option">
-
-                                <input
-                                    type="radio"
-                                    name="attendance"
-                                    value="with-spouse"
-                                >
-
-                                <span>
-                                    Хань ижилтэйгээ ирнэ
-                                </span>
-
-                            </label>
-
-
-                            <label class="radio-option">
-
-                                <input
-                                    type="radio"
-                                    name="attendance"
-                                    value="not-attending"
-                                >
-
-                                <span>
-                                    Хүрэлцэн ирэх боломжгүй
-                                </span>
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Хүүхдийн тоо -->
-
-                    <div class="form-group">
-
-                        <label for="childrenCount">
-                            Хүүхдийн тоо
-                        </label>
-
-                        <div class="number-control">
-
-                            <button type="button" id="decreaseChildren">
-                                −
-                            </button>
-
-                            <input type="number" id="childrenCount" name="childrenCount" value="0" min="0" max="10" readonly>
-
-                            <button type="button" id="increaseChildren">
-                                +
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Илгээх -->
-
-                    <button type="submit" class="submit-button">
-                        ХАРИУ ИЛГЭЭХ
-                    </button>
-
-                </form>
-
-
-                <!-- Амжилттай илгээгдсэний дараах хэсэг -->
-
-                <div id="rsvpSuccess" class="rsvp-success hidden">
-
-                    <div class="success-icon">
-                        ✓
-                    </div>
-
-                    <h3>
-                        БАЯРЛАЛАА
-                    </h3>
-
-                    <p>
-                        Таны хариу амжилттай бүртгэгдлээ.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             FINAL MESSAGE
-             ====================================== -->
-
-        <section class="final-section section">
-
-            <div class="section-inner">
-
-                <div class="dragon-final">
-                    Билэгт сайн өдөр
-                </div>
-
-                <h2>
-                    ТАНЫГ ХҮЛЭЭЖ БАЙЯ
-                </h2>
-
-                <p>
-                    Хүндэтгэсэн
-                </p>
-
-                <p class="family-name">
-                    Дашчирэвийн гэр бүл
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             FOOTER
-             ====================================== -->
-
-        <footer class="footer">
-
-            <p>
-                СЭВЛЭГ ҮРГЭЭХ ЁСЛОЛ
-            </p>
-
-            <p>
-                2026
-            </p>
-
-        </footer>
-
-
-    </main>
-
-
-    <!-- ==========================================
-         JAVASCRIPT
-         ========================================== -->
-
-    <script src="main.js"></script>
-
-</body>
-
-</html>
+});
