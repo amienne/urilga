@@ -1,3 +1,15 @@
+/* ==========================================
+   SUPABASE ХОЛБОЛТ
+   ========================================== */
+
+const SUPABASE_URL = "https://kxjzdfhovwsucjkaufyp.supabase.co";
+const SUPABASE_KEY = "sb_publishable_CwZQlwt4uvzlm1Ay-aBDng_7LAWKxd0";
+
+const supabaseClient = window.supabase
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    : null;
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
     /* ==========================================
@@ -278,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         rsvpForm.addEventListener(
             "submit",
-            function (event) {
+            async function (event) {
 
                 event.preventDefault();
 
@@ -324,24 +336,71 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 /*
-                 * Одоогоор database холбохоос өмнө
-                 * form ажиллаж байгаа эсэхийг шалгана.
+                 * Supabase-руу мэдээллийг илгээнэ.
                  */
 
-                console.log(
-                    "Нэр:",
-                    name
-                );
+                if (!supabaseClient) {
 
-                console.log(
-                    "Хариу:",
-                    attendanceElement.value
-                );
+                    alert(
+                        "Холболт бэлэн бус байна. Хуудсаа дахин ачаалаад дахин оролдоно уу."
+                    );
 
-                console.log(
-                    "Хүүхдийн тоо:",
-                    children
-                );
+                    return;
+
+                }
+
+
+                const submitButton =
+                    rsvpForm.querySelector(
+                        ".submit-button"
+                    );
+
+                if (submitButton) {
+
+                    submitButton.disabled = true;
+
+                    submitButton.textContent =
+                        "ИЛГЭЭЖ БАЙНА...";
+
+                }
+
+
+                const { error } =
+                    await supabaseClient
+                        .from("rsvp")
+                        .insert([
+                            {
+                                guest_name: name,
+                                attendance: attendanceElement.value,
+                                children_count: children
+                            }
+                        ]);
+
+
+                if (submitButton) {
+
+                    submitButton.disabled = false;
+
+                    submitButton.textContent =
+                        "ХАРИУ ИЛГЭЭХ";
+
+                }
+
+
+                if (error) {
+
+                    console.error(
+                        "Supabase алдаа:",
+                        error
+                    );
+
+                    alert(
+                        "Уучлаарай, илгээхэд алдаа гарлаа. Дахин оролдоно уу."
+                    );
+
+                    return;
+
+                }
 
 
                 if (rsvpSuccess) {
