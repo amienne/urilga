@@ -35,6 +35,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const rsvpForm = document.getElementById("rsvpForm");
     const guestName = document.getElementById("guestName");
     const rsvpSuccess = document.getElementById("rsvpSuccess");
+    const rsvpToast = document.getElementById("rsvpToast");
+
+
+    /* ==========================================
+       TOAST МЭДЭГДЭЛ
+       ========================================== */
+
+    let toastTimer = null;
+
+    function showToast(message) {
+
+        if (!rsvpToast) {
+            return;
+        }
+
+        if (message) {
+            rsvpToast.textContent = message;
+        }
+
+        rsvpToast.classList.add("show");
+
+        if (toastTimer) {
+            clearTimeout(toastTimer);
+        }
+
+        toastTimer = setTimeout(function () {
+
+            rsvpToast.classList.remove("show");
+
+        }, 2800);
+
+    }
 
 
     /* ==========================================
@@ -403,13 +435,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                if (rsvpSuccess) {
-
-                    rsvpSuccess.classList.remove(
-                        "hidden"
-                    );
-
-                }
+                showToast(
+                    "Таны хариу амжилттай илгээгдлээ ✓"
+                );
 
 
                 rsvpForm.reset();
