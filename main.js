@@ -455,3 +455,139 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+
+/* ==========================================
+   ДЭЛГЭЦИЙГ ТОЙРЧ НИСЭХ БЯЦХАН ЛУУ
+   ========================================== */
+
+(function () {
+
+    const dragonEl = document.getElementById("flyingDragon");
+
+    if (!dragonEl) {
+        return;
+    }
+
+
+    const prefersReducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+    if (prefersReducedMotion) {
+        return;
+    }
+
+
+    let scrollFraction = 0;
+
+    function updateScrollFraction() {
+
+        const scrollable =
+            document.documentElement.scrollHeight -
+            window.innerHeight;
+
+        scrollFraction =
+            scrollable > 0
+                ? window.scrollY / scrollable
+                : 0;
+
+    }
+
+    window.addEventListener(
+        "scroll",
+        updateScrollFraction,
+        { passive: true }
+    );
+
+    window.addEventListener(
+        "resize",
+        updateScrollFraction
+    );
+
+    updateScrollFraction();
+
+
+    /*
+     * Луу scroll хийх бvрд арай илvv эрчимтэй,
+     * зогсонги vед зөөлөн тэнvvлэн нисдэг.
+     */
+
+    let lastScrollY = window.scrollY;
+    let scrollEnergy = 0;
+
+    window.addEventListener(
+        "scroll",
+        function () {
+
+            const delta =
+                Math.abs(window.scrollY - lastScrollY);
+
+            scrollEnergy =
+                Math.min(
+                    scrollEnergy + delta * 0.05,
+                    40
+                );
+
+            lastScrollY = window.scrollY;
+
+        },
+        { passive: true }
+    );
+
+
+    function flyLoop(timestamp) {
+
+        const t = timestamp / 1000;
+
+        /*
+         * Scroll хийхээ больсны дараа эрчим
+         * аажмаар багасна.
+         */
+
+        scrollEnergy *= 0.98;
+
+
+        const centerX =
+            window.innerWidth * 0.5;
+
+        const centerY =
+            window.innerHeight *
+            (0.22 + scrollFraction * 0.55);
+
+        const radiusX =
+            Math.min(window.innerWidth * 0.38, 260) +
+            scrollEnergy;
+
+        const radiusY =
+            70 + scrollEnergy * 0.6;
+
+        const speed =
+            0.28 + scrollEnergy * 0.01;
+
+        const x =
+            centerX + radiusX * Math.cos(t * speed);
+
+        const y =
+            centerY + radiusY * Math.sin(t * speed * 2);
+
+        const tilt =
+            Math.sin(t * speed) * 18;
+
+        const half =
+            dragonEl.offsetWidth / 2 || 32;
+
+        dragonEl.style.transform =
+            "translate(" +
+            (x - half) + "px, " +
+            (y - half) + "px) " +
+            "rotate(" + tilt + "deg)";
+
+        requestAnimationFrame(flyLoop);
+
+    }
+
+    requestAnimationFrame(flyLoop);
+
+})();
