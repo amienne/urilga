@@ -1,0 +1,701 @@
+```html
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Гар утас, таблет, компьютер дээр зөв хэмжээнд харагдуулах -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Сэвлэг үргээх ёслолын урилга">
+
+    <title>Сэвлэг үргээх ёслолын урилга</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Үндсэн CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         01. MUSIC
+         ========================================== -->
+
+    <audio id="backgroundMusic" loop>
+        <source
+            src="assets/audio/duu.mp3"
+            type="audio/mpeg"
+        >
+        Таны браузер audio элементийг дэмжихгүй байна.
+    </audio>
+
+
+    <!-- Дуу асаах / зогсоох диск -->
+    <button id="musicButton" class="music-button" type="button" aria-label="Дуу тоглуулах эсвэл зогсоох">
+        <span class="music-disc">
+            <span class="disc-center"></span>
+        </span>
+    </button>
+
+
+    <!-- ==========================================
+         02. OPENING SCREEN
+         ========================================== -->
+
+    <!-- ==========================================
+     02. OPENING SCREEN
+     ========================================== -->
+
+    <section id="openingScreen" class="opening-screen">
+
+        <!-- Арын уламжлалт чимэглэл -->
+
+        <div class="opening-bg">
+
+            <!-- Зөөлөн гэрэл -->
+            <div class="bg-glow bg-glow-1"></div>
+            <div class="bg-glow bg-glow-2"></div>
+            <div class="bg-glow bg-glow-3"></div>
+
+            <!-- Үүлс -->
+            <div class="bg-cloud cloud-1"></div>
+            <div class="bg-cloud cloud-2"></div>
+            <div class="bg-cloud cloud-3"></div>
+            <div class="bg-cloud cloud-4"></div>
+
+            <!-- Монгол уламжлалт хээ -->
+            <div class="mongol-pattern pattern-top">
+                ᠘
+            </div>
+
+            <div class="mongol-pattern pattern-left">
+                ◈
+            </div>
+
+            <div class="mongol-pattern pattern-right">
+                ◈
+            </div>
+
+            <!-- Алтан хүрээ -->
+            <div class="opening-frame frame-top"></div>
+            <div class="opening-frame frame-bottom"></div>
+            <div class="opening-frame frame-left"></div>
+            <div class="opening-frame frame-right"></div>
+
+        </div>
+
+
+        <!-- ==========================================
+         ХӨДӨЛГӨӨНТ ЛУУ
+         ========================================== -->
+
+        <div class="opening-decoration dragon-decoration">
+
+            <div class="dragon-wrapper">
+
+                <!-- Лууны зөөлөн гэрэл -->
+                <div class="dragon-glow"></div>
+
+                <!-- Луу -->
+                <img src="assets/image/dragon.png" alt="Луу жилийн бэлгэдэл" class="animated-dragon">
+
+                <!-- Лууны эргэн тойрны үүл -->
+                <div class="dragon-cloud dragon-cloud-1"></div>
+                <div class="dragon-cloud dragon-cloud-2"></div>
+                <div class="dragon-cloud dragon-cloud-3"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+         OPENING CONTENT
+         ========================================== -->
+
+        <div class="opening-content">
+
+            <p class="small-title">
+                ЛУУ ЖИЛИЙН
+            </p>
+
+
+            <h1>
+                Д.Ариунмэргэн
+            </h1>
+
+
+            <div class="opening-line"></div>
+
+
+            <p class="event-title">
+                СЭВЛЭГ ҮРГЭЭХ
+                <br> ЁСЛОЛЫН УРИЛГА
+            </p>
+
+
+            <!-- Хүүхдийн зураг -->
+
+            <div class="opening-photo">
+
+                <div class="photo-decoration photo-decoration-1"></div>
+                <div class="photo-decoration photo-decoration-2"></div>
+
+                <img src="assets/image/pro.png" alt="Бяцхан хүүхдийн зураг">
+
+            </div>
+
+
+            <!-- Урилга нээх товч -->
+
+            <button id="openInvitation" class="open-button" type="button">
+            УРИЛГА НЭЭХ
+        </button>
+
+
+            <!-- Доод уламжлалт чимэглэл -->
+
+            <div class="opening-bottom-decoration">
+
+                <span></span>
+
+                <strong>◇</strong>
+
+                <span></span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         03. MAIN INVITATION
+         ========================================== -->
+
+    <main id="mainInvitation" class="main-invitation hidden">
+
+
+        <!-- ======================================
+             HERO SECTION
+             ====================================== -->
+
+        <section class="hero section">
+
+            <div class="hero-decoration dragon-symbol">
+                ЛУУ
+            </div>
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    ХҮНДЭТ ЗОЧИД ТА БҮХНИЙГ
+                </p>
+
+                <h2>
+                    СЭВЛЭГ ҮРГЭЭХ
+                    <br> ЁСЛОЛ
+                </h2>
+
+                <div class="decorative-line">
+                    <span></span>
+                    <i></i>
+                    <span></span>
+                </div>
+
+                <p class="invitation-intro">
+                    Бяцхан үрийнхээ сэвлэгийг үргээж, монгол ёс заншлаа дээдлэн, ерөөл бэлгэдэлтэй сайхан өдрийг хамтдаа өнгөрүүлэхээр та бүхнийг хүндэтгэн урьж байна.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             CHILD INFORMATION
+             ====================================== -->
+
+        <section class="child-section section">
+
+            <div class="section-inner">
+
+                <p class="section-label">
+                    БИДНИЙ БЯЦХАН ҮР
+                </p>
+
+                <div class="child-photo">
+
+                    <img src="assets/image/nyrai.jpeg" alt="Бяцхан үрийн зураг">
+
+                </div>
+
+                <h2 class="child-name">
+                    Бяцхан Ариунмэргэн
+                </h2>
+
+                <p class="child-description">
+                    Луу жилтэн бяцхан үрийн сэвлэг үргээх ёслол
+                </p>
+
+                <div class="dragon-divider">
+                    <span></span>
+                    <strong>ЛУУ</strong>
+                    <span></span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             COUNTDOWN
+             ====================================== -->
+
+        <section class="countdown-section section">
+
+            <div class="section-inner">
+
+                <p class="section-label">
+                    ЁСЛОЛ БОЛОХОД
+                </p>
+
+                <h2 class="countdown-title">
+                    ТУН УДАХГҮЙ
+                </h2>
+
+                <div id="countdown" class="countdown">
+
+                    <div class="countdown-item">
+                        <span id="days" class="countdown-number">
+                            00
+                        </span>
+
+                        <span class="countdown-label">
+                            ӨДӨР
+                        </span>
+                    </div>
+
+
+                    <div class="countdown-separator">
+                        :
+                    </div>
+
+
+                    <div class="countdown-item">
+                        <span id="hours" class="countdown-number">
+                            00
+                        </span>
+
+                        <span class="countdown-label">
+                            ЦАГ
+                        </span>
+                    </div>
+
+
+                    <div class="countdown-separator">
+                        :
+                    </div>
+
+
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-number">
+                            00
+                        </span>
+
+                        <span class="countdown-label">
+                            МИНУТ
+                        </span>
+                    </div>
+
+
+                    <div class="countdown-separator">
+                        :
+                    </div>
+
+
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-number">
+                            00
+                        </span>
+
+                        <span class="countdown-label">
+                            СЕКУНД
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             EVENT DATE & TIME
+             ====================================== -->
+
+        <section class="event-section section">
+
+            <div class="section-inner">
+
+                <p class="section-label">
+                    ЁСЛОЛЫН ӨДӨР
+                </p>
+
+                <h2 class="event-date">
+                    2026.10.04
+                </h2>
+
+                <p class="event-weekday">
+                    НЯМ ГАРАГ
+                </p>
+
+                <div class="event-time-box">
+
+                    <span class="time-icon">
+                        ◷
+                    </span>
+
+                    <div>
+                        <p class="time-label">
+                            ЭХЛЭХ ЦАГ
+                        </p>
+
+                        <p class="event-time">
+                            11:00
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             LOCATION
+             ====================================== -->
+
+        <section class="location-section section">
+
+            <div class="section-inner">
+
+                <p class="section-label">
+                    ЁСЛОЛЫН БОЛОХ ГАЗАР
+                </p>
+
+                <h2 class="location-name">
+                    Өнөр хотхон 101-82
+                </h2>
+
+                <p class="location-address">
+                    Эрдэнэт хот
+                    <br> Монгол Улс
+                </p>
+
+                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="map-button">
+                    ГАЗРЫН ЗУРАГ ХАРАХ
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             PHOTO GALLERY
+             ====================================== -->
+
+        <section class="gallery-section section">
+
+            <div class="section-inner">
+
+                <p class="section-label">
+                    БЯЦХАН ҮРИЙН ДУРСАМЖ
+                </p>
+
+                <h2 class="gallery-title">
+                    БИДНИЙ БЯЦХАН
+                    <br> АЗ ЖАРГАЛ
+                </h2>
+
+                <div class="gallery">
+
+                    <div class="gallery-item gallery-large">
+                        <img src="assets/image/nyraiahtaigaa.jpeg" alt="Бяцхан үрийн дурсамж" loading="lazy">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="assets/image/1year.png" alt="Бяцхан үрийн дурсамж" loading="lazy">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="assets/image/ahtaigaa.png" alt="Бяцхан үрийн дурсамж" loading="lazy">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="assets/image/nyrai.jpeg" alt="Бяцхан үрийн дурсамж" loading="lazy">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             INVITATION MESSAGE
+             ====================================== -->
+
+        <section class="message-section section">
+
+            <div class="section-inner">
+
+                <div class="message-decoration">
+                    ❈
+                </div>
+
+                <p class="invitation-message">
+
+                    Эрхэм хүндэт төрөл төрөгсөд, ахан дүүс, найз нөхөд та бүхнийг
+
+                    <br><br> бидний бяцхан үрийн сэвлэг үргээх ёслолд хүрэлцэн ирж,
+
+                    <br><br> ерөөл бэлэгтэй сайхан үгсээрээ бяцхан үрийг минь мялаан,
+
+                    <br><br> баярт өдрийг маань хамтдаа хуваалцахыг хүндэтгэн урьж байна.
+
+                </p>
+
+                <div class="message-decoration">
+                    ❈
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             RSVP
+             ====================================== -->
+
+        <section id="rsvp" class="rsvp-section section">
+
+            <div class="section-inner">
+
+                <p class="section-label">
+                    ХҮРЭЛЦЭН ИРЭХЭЭ
+                </p>
+
+                <h2 class="rsvp-title">
+                    БАТАЛГААЖУУЛНА УУ
+                </h2>
+
+                <p class="rsvp-description">
+                    Та бүхний хариу бидний бэлтгэл ажилд чухал ач холбогдолтой.
+                </p>
+
+
+                <form id="rsvpForm" class="rsvp-form">
+
+                    <!-- Нэр -->
+
+                    <div class="form-group">
+
+                        <label for="guestName">
+                            Таны нэр
+                        </label>
+
+                        <input type="text" id="guestName" name="guestName" placeholder="Нэрээ оруулна уу" required>
+
+                    </div>
+
+
+                    <!-- RSVP сонголт -->
+
+                    <div class="form-group">
+
+                        <p class="form-label">
+                            Таны хариу
+                        </p>
+
+                        <div class="radio-group">
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="attendance"
+                                    value="attending"
+                                    required
+                                >
+
+                                <span>
+                                    Хүрэлцэн ирнэ
+                                </span>
+
+                            </label>
+
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="attendance"
+                                    value="with-spouse"
+                                >
+
+                                <span>
+                                    Хань ижилтэйгээ ирнэ
+                                </span>
+
+                            </label>
+
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="attendance"
+                                    value="not-attending"
+                                >
+
+                                <span>
+                                    Хүрэлцэн ирэх боломжгүй
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Хүүхдийн тоо -->
+
+                    <div class="form-group">
+
+                        <label for="childrenCount">
+                            Хүүхдийн тоо
+                        </label>
+
+                        <div class="number-control">
+
+                            <button type="button" id="decreaseChildren">
+                                −
+                            </button>
+
+                            <input type="number" id="childrenCount" name="childrenCount" value="0" min="0" max="10" readonly>
+
+                            <button type="button" id="increaseChildren">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Илгээх -->
+
+                    <button type="submit" class="submit-button">
+                        ХАРИУ ИЛГЭЭХ
+                    </button>
+
+                </form>
+
+
+                <!-- Амжилттай илгээгдсэний дараах хэсэг -->
+
+                <div id="rsvpSuccess" class="rsvp-success hidden">
+
+                    <div class="success-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        БАЯРЛАЛАА
+                    </h3>
+
+                    <p>
+                        Таны хариу амжилттай бүртгэгдлээ.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             FINAL MESSAGE
+             ====================================== -->
+
+        <section class="final-section section">
+
+            <div class="section-inner">
+
+                <div class="dragon-final">
+                    Билэгт сайн өдөр
+                </div>
+
+                <h2>
+                    ТАНЫГ ХҮЛЭЭЖ БАЙЯ
+                </h2>
+
+                <p>
+                    Хүндэтгэсэн
+                </p>
+
+                <p class="family-name">
+                    Дашчирэвийн гэр бүл
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             FOOTER
+             ====================================== -->
+
+        <footer class="footer">
+
+            <p>
+                СЭВЛЭГ ҮРГЭЭХ ЁСЛОЛ
+            </p>
+
+            <p>
+                2026
+            </p>
+
+        </footer>
+
+
+    </main>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
