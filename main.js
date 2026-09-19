@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     /* ==========================================
        ELEMENTS
@@ -11,81 +11,83 @@ document.addEventListener("DOMContentLoaded", function() {
     const backgroundMusic = document.getElementById("backgroundMusic");
     const musicButton = document.getElementById("musicButton");
 
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+
+    const decreaseChildren = document.getElementById("decreaseChildren");
+    const increaseChildren = document.getElementById("increaseChildren");
+    const childrenCount = document.getElementById("childrenCount");
+
+    const rsvpForm = document.getElementById("rsvpForm");
+    const guestName = document.getElementById("guestName");
+    const rsvpSuccess = document.getElementById("rsvpSuccess");
+
 
     /* ==========================================
        OPEN INVITATION
        ========================================== */
 
-    /* ==========================================
-     OPEN INVITATION
-     ========================================== */
-
     if (openInvitation) {
 
-        openInvitation.addEventListener("click", function() {
+        openInvitation.addEventListener("click", function () {
 
-            /* ======================================
-               OPENING SCREEN-ИЙГ БҮРЭН УСТГАХ
-               ====================================== */
+            /*
+             * Opening screen-ийг бүрэн устгана.
+             * Ингэснээр арын хэсэг давхар харагдахгүй.
+             */
 
             if (openingScreen) {
-
                 openingScreen.remove();
-
             }
 
 
-            /* ======================================
-               ҮНДСЭН УРИЛГЫГ ХАРУУЛАХ
-               ====================================== */
+            /*
+             * Үндсэн урилгыг харуулна.
+             */
 
             if (mainInvitation) {
 
                 mainInvitation.classList.remove("hidden");
 
                 mainInvitation.style.display = "block";
-
                 mainInvitation.style.visibility = "visible";
-
                 mainInvitation.style.opacity = "1";
 
             }
 
 
-            /* ======================================
-               ХУУДСЫГ ҮНДСЭН УРИЛГЫН ЭХЭНД АВААЧИХ
-               ====================================== */
+            /*
+             * Хуудасны дээд хэсгээс эхлүүлнэ.
+             */
 
-            document.documentElement.scrollTop = 0;
-
-            document.body.scrollTop = 0;
-
-
-            window.scrollTo(0, 0);
+            window.scrollTo({
+                top: 0,
+                behavior: "instant"
+            });
 
 
-            /* ======================================
-               ДУУГ ТОГЛУУЛАХ
-               ====================================== */
+            /*
+             * Хөгжим эхлүүлэх
+             */
 
             if (backgroundMusic) {
 
                 backgroundMusic.volume = 0.55;
 
                 backgroundMusic.play()
-                    .then(function() {
+                    .then(function () {
 
                         if (musicButton) {
-
                             musicButton.classList.add("playing");
-
                         }
 
                     })
-                    .catch(function(error) {
+                    .catch(function (error) {
 
                         console.log(
-                            "Дуу тоглуулахад алдаа:",
+                            "Хөгжим автоматаар эхлэх боломжгүй байна:",
                             error
                         );
 
@@ -99,27 +101,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     /* ==========================================
-       MUSIC BUTTON
+       MUSIC PLAY / PAUSE
        ========================================== */
 
     if (musicButton && backgroundMusic) {
 
-        musicButton.addEventListener("click", function() {
+        musicButton.addEventListener("click", function () {
 
             if (backgroundMusic.paused) {
 
                 backgroundMusic.play()
-                    .then(function() {
+                    .then(function () {
 
                         musicButton.classList.add("playing");
 
                     })
-                    .catch(function(error) {
+                    .catch(function (error) {
 
-                        console.log(
-                            "Дуу тоглуулахад алдаа:",
-                            error
-                        );
+                        console.log("Music play error:", error);
 
                     });
 
@@ -133,26 +132,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         });
 
-
-        backgroundMusic.addEventListener(
-            "play",
-            function() {
-
-                musicButton.classList.add("playing");
-
-            }
-        );
-
-
-        backgroundMusic.addEventListener(
-            "pause",
-            function() {
-
-                musicButton.classList.remove("playing");
-
-            }
-        );
-
     }
 
 
@@ -161,122 +140,73 @@ document.addEventListener("DOMContentLoaded", function() {
        ========================================== */
 
     /*
-       ҮЙЛ ЯВДАЛ:
+     * Монголын цаг:
+     * 2026 оны 10 сарын 4
+     * 11:00
+     */
 
-       2026 оны 10 сарын 04
-       11:00
-       Монголын цагийн бүс UTC+08:00
-    */
-
-    const eventDate =
-        new Date("2026-10-04T11:00:00+08:00");
-
-
-    const daysElement =
-        document.getElementById("days");
-
-    const hoursElement =
-        document.getElementById("hours");
-
-    const minutesElement =
-        document.getElementById("minutes");
-
-    const secondsElement =
-        document.getElementById("seconds");
+    const eventDate = new Date(
+        "2026-10-04T11:00:00+08:00"
+    );
 
 
     function updateCountdown() {
 
         const now = new Date();
 
-        const difference =
-            eventDate.getTime() - now.getTime();
+        const difference = eventDate.getTime() - now.getTime();
 
 
-        /* Хугацаа дууссан */
+        /*
+         * Хугацаа дууссан бол
+         */
 
         if (difference <= 0) {
 
-            if (daysElement)
-                daysElement.textContent = "00";
-
-            if (hoursElement)
-                hoursElement.textContent = "00";
-
-            if (minutesElement)
-                minutesElement.textContent = "00";
-
-            if (secondsElement)
-                secondsElement.textContent = "00";
+            if (daysElement) daysElement.textContent = "00";
+            if (hoursElement) hoursElement.textContent = "00";
+            if (minutesElement) minutesElement.textContent = "00";
+            if (secondsElement) secondsElement.textContent = "00";
 
             return;
         }
 
 
-        /* Өдөр */
+        const days = Math.floor(
+            difference / (1000 * 60 * 60 * 24)
+        );
 
-        const days =
-            Math.floor(
-                difference /
-                (1000 * 60 * 60 * 24)
-            );
+        const hours = Math.floor(
+            (difference / (1000 * 60 * 60)) % 24
+        );
 
+        const minutes = Math.floor(
+            (difference / (1000 * 60)) % 60
+        );
 
-        /* Цаг */
-
-        const hours =
-            Math.floor(
-                (difference /
-                    (1000 * 60 * 60)) % 24
-            );
-
-
-        /* Минут */
-
-        const minutes =
-            Math.floor(
-                (difference /
-                    (1000 * 60)) % 60
-            );
-
-
-        /* Секунд */
-
-        const seconds =
-            Math.floor(
-                (difference / 1000) % 60
-            );
+        const seconds = Math.floor(
+            (difference / 1000) % 60
+        );
 
 
         if (daysElement) {
-
             daysElement.textContent =
                 String(days).padStart(2, "0");
-
         }
-
 
         if (hoursElement) {
-
             hoursElement.textContent =
                 String(hours).padStart(2, "0");
-
         }
-
 
         if (minutesElement) {
-
             minutesElement.textContent =
                 String(minutes).padStart(2, "0");
-
         }
 
-
         if (secondsElement) {
-
             secondsElement.textContent =
                 String(seconds).padStart(2, "0");
-
         }
 
     }
@@ -291,51 +221,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     /* ==========================================
-       CHILDREN COUNTER
+       CHILDREN COUNT
        ========================================== */
 
-    const decreaseChildren =
-        document.getElementById(
-            "decreaseChildren"
-        );
-
-    const increaseChildren =
-        document.getElementById(
-            "increaseChildren"
-        );
-
-    const childrenCount =
-        document.getElementById(
-            "childrenCount"
-        );
-
-
-    let childNumber = 0;
-
-
-    function updateChildrenCount() {
-
-        if (childrenCount) {
-
-            childrenCount.value =
-                childNumber;
-
-        }
-
-    }
-
-
-    if (decreaseChildren) {
+    if (decreaseChildren && childrenCount) {
 
         decreaseChildren.addEventListener(
             "click",
-            function() {
+            function () {
 
-                if (childNumber > 0) {
+                let current =
+                    Number(childrenCount.value) || 0;
 
-                    childNumber--;
+                if (current > 0) {
 
-                    updateChildrenCount();
+                    current--;
+
+                    childrenCount.value = current;
 
                 }
 
@@ -345,17 +247,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    if (increaseChildren) {
+    if (increaseChildren && childrenCount) {
 
         increaseChildren.addEventListener(
             "click",
-            function() {
+            function () {
 
-                if (childNumber < 10) {
+                let current =
+                    Number(childrenCount.value) || 0;
 
-                    childNumber++;
+                if (current < 10) {
 
-                    updateChildrenCount();
+                    current++;
+
+                    childrenCount.value = current;
 
                 }
 
@@ -366,43 +271,37 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     /* ==========================================
-       RSVP
+       RSVP FORM
        ========================================== */
-
-    const rsvpForm =
-        document.getElementById(
-            "rsvpForm"
-        );
-
-    const rsvpSuccess =
-        document.getElementById(
-            "rsvpSuccess"
-        );
-
 
     if (rsvpForm) {
 
         rsvpForm.addEventListener(
             "submit",
-            function(event) {
+            function (event) {
 
                 event.preventDefault();
 
 
-                const guestName =
-                    document
-                    .getElementById("guestName")
-                    .value
-                    .trim();
+                const name =
+                    guestName
+                        ? guestName.value.trim()
+                        : "";
 
 
-                const attendance =
+                const attendanceElement =
                     document.querySelector(
                         'input[name="attendance"]:checked'
                     );
 
 
-                if (!guestName) {
+                const children =
+                    childrenCount
+                        ? Number(childrenCount.value) || 0
+                        : 0;
+
+
+                if (!name) {
 
                     alert(
                         "Нэрээ оруулна уу."
@@ -413,10 +312,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
 
 
-                if (!attendance) {
+                if (!attendanceElement) {
 
                     alert(
-                        "Хариу сонгоно уу."
+                        "Та хүрэлцэн ирэх эсэхээ сонгоно уу."
                     );
 
                     return;
@@ -424,15 +323,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
 
 
-                console.log({
-                    name: guestName,
-                    attendance: attendance.value,
-                    children: childNumber
-                });
+                /*
+                 * Одоогоор database холбохоос өмнө
+                 * form ажиллаж байгаа эсэхийг шалгана.
+                 */
 
+                console.log(
+                    "Нэр:",
+                    name
+                );
 
-                rsvpForm.classList.add(
-                    "hidden"
+                console.log(
+                    "Хариу:",
+                    attendanceElement.value
+                );
+
+                console.log(
+                    "Хүүхдийн тоо:",
+                    children
                 );
 
 
@@ -441,6 +349,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     rsvpSuccess.classList.remove(
                         "hidden"
                     );
+
+                }
+
+
+                rsvpForm.reset();
+
+
+                if (childrenCount) {
+
+                    childrenCount.value = 0;
 
                 }
 
