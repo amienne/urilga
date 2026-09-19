@@ -1,0 +1,1879 @@
+/* =========================================================
+   СЭВЛЭГ ҮРГЭЭХ ЁСЛОЛЫН УРИЛГА
+   Mobile First Design
+   ========================================================= */
+
+
+/* =========================================================
+   01. RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    color: #31566F;
+    background: #FFFFFF;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   02. ЕРӨНХИЙ
+   ========================================================= */
+
+.section {
+    width: 100%;
+    padding: 70px 20px;
+}
+
+.section-inner {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.section-label {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #72B9E8;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   03. OPENING SCREEN
+   ========================================================= */
+
+.opening-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient( 180deg, #FFFFFF 0%, #F3FAFF 100%);
+    overflow-y: auto;
+}
+
+.opening-content {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    padding: 35px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    box-shadow: 0 15px 50px rgba(40, 120, 181, 0.12);
+}
+
+.small-title {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #72B9E8;
+    margin-bottom: 10px;
+}
+
+.opening-content h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(40px, 12vw, 65px);
+    line-height: 1;
+    color: #2878B5;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+.opening-line {
+    width: 60px;
+    height: 1px;
+    background: #72B9E8;
+    margin: 0 auto 20px;
+}
+
+.event-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(25px, 7vw, 38px);
+    line-height: 1.2;
+    color: #31566F;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   04. OPENING PHOTO
+   ========================================================= */
+
+.opening-photo {
+    width: 190px;
+    height: 190px;
+    margin: 0 auto 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 7px solid #FFFFFF;
+    box-shadow: 0 10px 35px rgba(40, 120, 181, 0.20);
+}
+
+.opening-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   05. OPEN BUTTON
+   ========================================================= */
+
+.open-button {
+    width: 100%;
+    max-width: 220px;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 50px;
+    background: #2878B5;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(40, 120, 181, 0.25);
+    transition: 0.3s ease;
+}
+
+.open-button:hover {
+    background: #1F689F;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   06. MUSIC BUTTON
+   ========================================================= */
+
+.music-button {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    z-index: 900;
+    width: 55px;
+    height: 55px;
+    border: none;
+    background: transparent;
+}
+
+.music-disc {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: repeating-radial-gradient( circle, #2878B5 0px, #2878B5 3px, #72B9E8 4px, #2878B5 6px);
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 5px 20px rgba(40, 120, 181, 0.25);
+}
+
+.disc-center {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+
+.music-button.playing .music-disc {
+    animation: rotateDisc 4s linear infinite;
+}
+
+@keyframes rotateDisc {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   07. HERO
+   ========================================================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient( 180deg, #F3FAFF, #FFFFFF);
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #72B9E8;
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(45px, 13vw, 75px);
+    line-height: 0.95;
+    color: #2878B5;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.invitation-intro {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+    line-height: 1.7;
+    color: #527287;
+}
+
+
+/* =========================================================
+   08. DECORATIVE LINE
+   ========================================================= */
+
+.decorative-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.decorative-line span {
+    width: 40px;
+    height: 1px;
+    background: #72B9E8;
+}
+
+.decorative-line i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2878B5;
+}
+
+
+/* =========================================================
+   09. CHILD SECTION
+   ========================================================= */
+
+.child-section {
+    text-align: center;
+    background: #FFFFFF;
+}
+
+.child-photo {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 8px solid #DDF3FF;
+    box-shadow: 0 10px 35px rgba(40, 120, 181, 0.15);
+}
+
+.child-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.child-name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(38px, 10vw, 55px);
+    line-height: 1;
+    color: #2878B5;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.child-description {
+    color: #6D8798;
+    font-size: 13px;
+}
+
+.dragon-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.dragon-divider span {
+    width: 50px;
+    height: 1px;
+    background: #DDF3FF;
+}
+
+.dragon-divider strong {
+    font-size: 11px;
+    color: #72B9E8;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   10. COUNTDOWN
+   ========================================================= */
+
+.countdown-section {
+    text-align: center;
+    background: #F3FAFF;
+}
+
+.countdown-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: #2878B5;
+    margin-bottom: 30px;
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    align-items: center;
+}
+
+.countdown-item {
+    padding: 18px 5px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(40, 120, 181, 0.08);
+}
+
+.countdown-number {
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(30px, 8vw, 48px);
+    line-height: 1;
+    color: #2878B5;
+}
+
+.countdown-label {
+    display: block;
+    margin-top: 8px;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: #6D8798;
+}
+
+.countdown-separator {
+    display: none;
+}
+
+
+/* =========================================================
+   11. EVENT SECTION
+   ========================================================= */
+
+.event-section {
+    text-align: center;
+    background: #FFFFFF;
+}
+
+.event-date {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(40px, 10vw, 60px);
+    line-height: 1;
+    color: #2878B5;
+    font-weight: 500;
+}
+
+.event-weekday {
+    margin-top: 8px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #72B9E8;
+}
+
+.event-time-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    max-width: 250px;
+    margin: 30px auto 0;
+    padding: 20px;
+    background: #F3FAFF;
+    border-radius: 20px;
+}
+
+.time-icon {
+    font-size: 28px;
+    color: #72B9E8;
+}
+
+.time-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #6D8798;
+}
+
+.event-time {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 32px;
+    color: #2878B5;
+}
+
+
+/* =========================================================
+   12. LOCATION
+   ========================================================= */
+
+.location-section {
+    text-align: center;
+    background: #F3FAFF;
+}
+
+.location-name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(32px, 9vw, 48px);
+    font-weight: 500;
+    color: #2878B5;
+    margin-bottom: 10px;
+}
+
+.location-address {
+    font-size: 13px;
+    color: #6D8798;
+    margin-bottom: 25px;
+}
+
+.map-button {
+    display: inline-block;
+    padding: 13px 25px;
+    background: #2878B5;
+    color: #FFFFFF;
+    border-radius: 50px;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   13. GALLERY
+   ========================================================= */
+
+.gallery-section {
+    background: #FFFFFF;
+    text-align: center;
+}
+
+.gallery-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(38px, 10vw, 55px);
+    line-height: 1;
+    color: #2878B5;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.gallery-item {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #DDF3FF;
+}
+
+.gallery-item.gallery-large {
+    grid-column: span 2;
+    aspect-ratio: 4 / 3;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   14. MESSAGE
+   ========================================================= */
+
+.message-section {
+    text-align: center;
+    background: #F3FAFF;
+}
+
+.invitation-message {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(20px, 5vw, 28px);
+    line-height: 1.7;
+    color: #31566F;
+}
+
+.message-decoration {
+    color: #72B9E8;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   15. RSVP
+   ========================================================= */
+
+.rsvp-section {
+    background: #FFFFFF;
+    text-align: center;
+}
+
+.rsvp-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(38px, 10vw, 55px);
+    color: #2878B5;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.rsvp-description {
+    font-size: 12px;
+    color: #6D8798;
+    margin-bottom: 30px;
+}
+
+.rsvp-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label,
+.form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #31566F;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #DDF3FF;
+    border-radius: 12px;
+    outline: none;
+    background: #F9FDFF;
+    font-size: 13px;
+    color: #31566F;
+}
+
+.form-group input[type="text"]:focus {
+    border-color: #72B9E8;
+}
+
+
+/* =========================================================
+   16. RADIO
+   ========================================================= */
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #DDF3FF;
+    border-radius: 10px;
+    background: #F9FDFF;
+}
+
+.radio-option input {
+    accent-color: #2878B5;
+}
+
+.radio-option span {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   17. NUMBER CONTROL
+   ========================================================= */
+
+.number-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.number-control button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #DDF3FF;
+    color: #2878B5;
+    font-size: 20px;
+}
+
+.number-control input {
+    width: 60px;
+    height: 40px;
+    border: 1px solid #DDF3FF;
+    border-radius: 10px;
+    text-align: center;
+    color: #2878B5;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   18. SUBMIT
+   ========================================================= */
+
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background: #2878B5;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.submit-button:hover {
+    background: #1F689F;
+}
+
+
+/* =========================================================
+   19. SUCCESS
+   ========================================================= */
+
+.rsvp-success {
+    max-width: 600px;
+    margin: 25px auto 0;
+    padding: 25px;
+    text-align: center;
+    background: #F3FAFF;
+    border-radius: 20px;
+}
+
+.success-icon {
+    font-size: 30px;
+    color: #2878B5;
+    margin-bottom: 5px;
+}
+
+.rsvp-success h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 30px;
+    color: #2878B5;
+}
+
+.rsvp-success p {
+    font-size: 12px;
+    color: #6D8798;
+}
+
+
+/* =========================================================
+   20. FINAL
+   ========================================================= */
+
+.final-section {
+    text-align: center;
+    background: linear-gradient( 180deg, #F3FAFF, #DDF3FF);
+}
+
+.final-section h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(42px, 12vw, 65px);
+    line-height: 1;
+    color: #2878B5;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.final-section p {
+    font-size: 12px;
+    color: #6D8798;
+}
+
+.family-name {
+    margin-top: 5px;
+    letter-spacing: 2px;
+    color: #2878B5 !important;
+}
+
+
+/* =========================================================
+   21. FOOTER
+   ========================================================= */
+
+.footer {
+    padding: 25px 20px;
+    text-align: center;
+    background: #FFFFFF;
+    border-top: 1px solid #DDF3FF;
+}
+
+.footer p {
+    font-size: 9px;
+    color: #8CA3B1;
+    letter-spacing: 1px;
+    margin: 3px;
+}
+
+
+/* =========================================================
+   22. TABLET / COMPUTER
+   ========================================================= */
+
+@media (min-width: 768px) {
+    .section {
+        padding: 100px 30px;
+    }
+    .opening-content {
+        max-width: 600px;
+        padding: 50px 40px;
+    }
+    .opening-photo {
+        width: 230px;
+        height: 230px;
+    }
+    .child-photo {
+        width: 280px;
+        height: 280px;
+    }
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    .gallery-item.gallery-large {
+        grid-column: span 2;
+        grid-row: span 2;
+        aspect-ratio: 1 / 1;
+    }
+    .gallery-item {
+        aspect-ratio: 1 / 1;
+    }
+    .countdown {
+        gap: 15px;
+    }
+    .countdown-item {
+        padding: 25px 10px;
+    }
+    .countdown-separator {
+        display: block;
+        color: #72B9E8;
+        font-size: 25px;
+    }
+    .countdown {
+        grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    }
+}
+
+
+/* =========================================================
+   23. VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+    .section {
+        padding: 55px 15px;
+    }
+    .opening-content {
+        padding: 25px 15px;
+    }
+    .opening-photo {
+        width: 160px;
+        height: 160px;
+    }
+    .countdown {
+        gap: 5px;
+    }
+    .countdown-item {
+        padding: 15px 3px;
+    }
+    .countdown-number {
+        font-size: 27px;
+    }
+    .countdown-label {
+        font-size: 7px;
+    }
+    .gallery {
+        gap: 7px;
+    }
+}
+
+
+/* =========================================================
+   24. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* ==========================================
+   PHOTO GALLERY
+   ========================================== */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+    margin: 30px auto 0;
+}
+
+.gallery-item {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f2f5f8;
+}
+
+.gallery-item.gallery-large {
+    grid-column: 1 / -1;
+    aspect-ratio: 4 / 3;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* Гар утас */
+
+@media (max-width: 600px) {
+    .gallery {
+        width: calc(100% - 24px);
+        gap: 8px;
+        margin-top: 24px;
+    }
+    .gallery-item {
+        border-radius: 10px;
+    }
+    .gallery-item.gallery-large {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+
+/* Таблет болон компьютер */
+
+@media (min-width: 601px) {
+    .gallery {
+        gap: 14px;
+        max-width: 650px;
+    }
+    .gallery-item {
+        border-radius: 14px;
+    }
+}
+
+
+/* ==========================================
+   OPENING SCREEN - MONGOLIAN DRAGON
+   ========================================== */
+
+.opening-screen {
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient( circle at 50% 35%, rgba(255, 255, 255, 0.95) 0%, rgba(232, 244, 250, 0.88) 45%, rgba(205, 228, 240, 0.95) 100%);
+}
+
+
+/* ==========================================
+   DRAGON CONTAINER
+   ========================================== */
+
+.dragon-decoration {
+    position: absolute;
+    top: 4%;
+    left: 0;
+    width: 100%;
+    height: 240px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.dragon-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ==========================================
+   DRAGON IMAGE
+   ========================================== */
+
+.animated-dragon {
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    top: 5px;
+    left: 50%;
+    object-fit: contain;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 8px 12px rgba(70, 130, 170, 0.20)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.70));
+    animation: dragonFloat 4.5s ease-in-out infinite, dragonGlow 3s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+
+/* ==========================================
+   DRAGON FLOAT ANIMATION
+   ========================================== */
+
+@keyframes dragonFloat {
+    0% {
+        transform: translateX(-50%) translateY(0) rotate(-2deg);
+    }
+    25% {
+        transform: translateX(-50%) translateY(-8px) rotate(1deg);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-14px) rotate(2deg);
+    }
+    75% {
+        transform: translateX(-50%) translateY(-6px) rotate(-1deg);
+    }
+    100% {
+        transform: translateX(-50%) translateY(0) rotate(-2deg);
+    }
+}
+
+
+/* ==========================================
+   DRAGON SOFT GLOW
+   ========================================== */
+
+@keyframes dragonGlow {
+    0% {
+        filter: drop-shadow(0 8px 12px rgba(70, 130, 170, 0.18)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.45));
+    }
+    50% {
+        filter: drop-shadow(0 10px 18px rgba(70, 130, 170, 0.28)) drop-shadow(0 0 28px rgba(255, 255, 255, 0.90));
+    }
+    100% {
+        filter: drop-shadow(0 8px 12px rgba(70, 130, 170, 0.18)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.45));
+    }
+}
+
+
+/* ==========================================
+   DRAGON GLOW CIRCLE
+   ========================================== */
+
+.dragon-glow {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient( circle, rgba(255, 255, 255, 0.65) 0%, rgba(190, 225, 240, 0.22) 45%, rgba(255, 255, 255, 0) 75%);
+    filter: blur(8px);
+    animation: glowPulse 4s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes glowPulse {
+    0% {
+        opacity: 0.55;
+        transform: translateX(-50%) scale(0.90);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.08);
+    }
+    100% {
+        opacity: 0.55;
+        transform: translateX(-50%) scale(0.90);
+    }
+}
+
+
+/* ==========================================
+   DECORATIVE CLOUDS
+   ========================================== */
+
+.dragon-cloud {
+    position: absolute;
+    width: 55px;
+    height: 24px;
+    border-radius: 50%;
+    background: radial-gradient( circle at 30% 50%, rgba(255, 255, 255, 0.95) 0 30%, transparent 31%), radial-gradient( circle at 55% 40%, rgba(255, 255, 255, 0.95) 0 35%, transparent 36%), radial-gradient( circle at 78% 55%, rgba(255, 255, 255, 0.90) 0 28%, transparent 29%);
+    opacity: 0.75;
+    animation: cloudFloat 6s ease-in-out infinite;
+}
+
+.cloud-one {
+    top: 75px;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.cloud-two {
+    top: 125px;
+    right: 8%;
+    animation-delay: 2s;
+}
+
+.cloud-three {
+    top: 30px;
+    right: 20%;
+    transform: scale(0.7);
+    animation-delay: 4s;
+}
+
+@keyframes cloudFloat {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0.55;
+    }
+    50% {
+        transform: translateX(12px) translateY(-7px);
+        opacity: 0.90;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+        opacity: 0.55;
+    }
+}
+
+
+/* ==========================================
+   OPENING CONTENT
+   ========================================== */
+
+.opening-content {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* ==========================================
+   BABY PHOTO EFFECT
+   ========================================== */
+
+.opening-photo {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin: 24px auto;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient( 135deg, #d9eff8, #ffffff, #b8dce9, #ffffff, #d9eff8);
+    box-shadow: 0 10px 30px rgba(64, 120, 150, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.8);
+    animation: babyPhotoFloat 5s ease-in-out infinite;
+}
+
+.opening-photo::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border-radius: 50%;
+    border: 1px solid rgba(160, 200, 215, 0.65);
+    animation: photoRing 5s linear infinite;
+}
+
+.opening-photo::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 5px;
+    right: 18px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 35px 25px 0 -5px rgba(255, 255, 255, 0.60), -100px 65px 0 -7px rgba(255, 255, 255, 0.65);
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+.opening-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    box-shadow: inset 0 0 20px rgba(50, 100, 130, 0.12);
+    transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.opening-photo:hover img {
+    transform: scale(1.04);
+    filter: brightness(1.04) saturate(1.08);
+}
+
+@keyframes babyPhotoFloat {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes photoRing {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes sparkle {
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 600px) {
+    .dragon-decoration {
+        top: 2%;
+        height: 190px;
+    }
+    .animated-dragon {
+        width: 145px;
+        height: 145px;
+        top: 0;
+    }
+    .dragon-glow {
+        width: 135px;
+        height: 135px;
+        top: 5px;
+    }
+    .dragon-cloud {
+        width: 42px;
+        height: 20px;
+    }
+    .cloud-one {
+        left: 3%;
+        top: 65px;
+    }
+    .cloud-two {
+        right: 3%;
+        top: 100px;
+    }
+    .cloud-three {
+        right: 15%;
+        top: 25px;
+    }
+    .opening-photo {
+        width: 145px;
+        height: 145px;
+        margin: 20px auto;
+    }
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+   ========================================== */
+
+@media (max-width: 380px) {
+    .dragon-decoration {
+        height: 165px;
+    }
+    .animated-dragon {
+        width: 125px;
+        height: 125px;
+    }
+    .dragon-glow {
+        width: 120px;
+        height: 120px;
+    }
+    .opening-photo {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+
+/* ==========================================
+   FINAL OPENING SCREEN FIX
+   ========================================== */
+
+
+/* ==========================================
+   OPENING SCREEN
+   ========================================== */
+
+#openingScreen {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+    background: radial-gradient( circle at 50% 20%, #ffffff 0%, #f4fbfe 42%, #dceff7 100%) !important;
+}
+
+
+/*
+ * Нүүр хэсгийг хаасны дараа
+ * БҮРЭН алга болно.
+ */
+
+#openingScreen.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+
+/* ==========================================
+   MAIN INVITATION
+   ========================================== */
+
+#mainInvitation.hidden {
+    display: none !important;
+}
+
+#mainInvitation {
+    display: block;
+}
+
+
+/* ==========================================
+   OPENING BACKGROUND
+   ========================================== */
+
+#openingScreen .opening-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+/* ==========================================
+   SOFT BACKGROUND LIGHT
+   ========================================== */
+
+#openingScreen .bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(35px);
+    opacity: 0.55;
+}
+
+#openingScreen .bg-glow-1 {
+    width: 260px;
+    height: 260px;
+    top: -80px;
+    left: -70px;
+    background: rgba(190, 225, 240, 0.55);
+}
+
+#openingScreen .bg-glow-2 {
+    width: 300px;
+    height: 300px;
+    right: -100px;
+    bottom: -80px;
+    background: rgba(205, 230, 242, 0.60);
+}
+
+#openingScreen .bg-glow-3 {
+    width: 180px;
+    height: 180px;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+
+/* ==========================================
+   WHITE INVITATION CARD
+   ========================================== */
+
+#openingScreen .opening-content {
+    position: relative;
+    z-index: 20;
+    width: min(92vw, 620px);
+    height: min(86vh, 760px);
+    min-height: 620px;
+    padding: 52px 35px 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    background: linear-gradient( 145deg, rgba(255, 255, 255, 0.98), rgba(250, 253, 255, 0.96));
+    border-radius: 42px;
+    box-shadow: 0 30px 80px rgba(74, 130, 160, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.95);
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   DRAGON
+   ========================================== */
+
+#openingScreen .dragon-decoration {
+    position: absolute !important;
+    top: -18px !important;
+    left: 50% !important;
+    width: 360px !important;
+    height: 230px !important;
+    transform: translateX(-50%) !important;
+    z-index: 8 !important;
+    pointer-events: none !important;
+}
+
+#openingScreen .dragon-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Лууны гэрэл */
+
+#openingScreen .dragon-glow {
+    position: absolute;
+    width: 270px;
+    height: 190px;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient( ellipse, rgba(255, 255, 255, 0.95) 0%, rgba(190, 225, 240, 0.55) 40%, rgba(255, 255, 255, 0) 75%);
+    filter: blur(15px);
+    animation: dragonLight 3s ease-in-out infinite;
+}
+
+
+/* Луу */
+
+#openingScreen .animated-dragon {
+    position: absolute;
+    width: 290px !important;
+    height: 210px !important;
+    max-width: none !important;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: contain;
+    object-position: center;
+    z-index: 10;
+    filter: drop-shadow( 0 12px 16px rgba(62, 120, 155, 0.20)) drop-shadow( 0 0 20px rgba(255, 255, 255, 0.85));
+    animation: dragonMove 3.8s ease-in-out infinite;
+}
+
+
+/* ==========================================
+   DRAGON MOTION
+   ========================================== */
+
+@keyframes dragonMove {
+    0% {
+        transform: translateX(-50%) translateY(5px) rotate(-2deg) scale(1);
+    }
+    25% {
+        transform: translateX(-50%) translateY(-10px) rotate(2deg) scale(1.03);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-18px) rotate(0deg) scale(1.06);
+    }
+    75% {
+        transform: translateX(-50%) translateY(-8px) rotate(-2deg) scale(1.03);
+    }
+    100% {
+        transform: translateX(-50%) translateY(5px) rotate(-2deg) scale(1);
+    }
+}
+
+@keyframes dragonLight {
+    0% {
+        opacity: 0.45;
+        transform: translateX(-50%) scale(0.90);
+    }
+    50% {
+        opacity: 0.95;
+        transform: translateX(-50%) scale(1.08);
+    }
+    100% {
+        opacity: 0.45;
+        transform: translateX(-50%) scale(0.90);
+    }
+}
+
+
+/* ==========================================
+   DRAGON CLOUDS
+   ========================================== */
+
+#openingScreen .dragon-cloud {
+    position: absolute;
+    width: 70px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    filter: blur(2px);
+    opacity: 0.7;
+    z-index: 5;
+    animation: cloudMove 5s ease-in-out infinite;
+}
+
+#openingScreen .dragon-cloud-1 {
+    left: 10px;
+    top: 110px;
+}
+
+#openingScreen .dragon-cloud-2 {
+    right: 5px;
+    top: 90px;
+    animation-delay: 1.5s;
+}
+
+#openingScreen .dragon-cloud-3 {
+    left: 55px;
+    top: 155px;
+    transform: scale(0.65);
+    animation-delay: 3s;
+}
+
+@keyframes cloudMove {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0.45;
+    }
+    50% {
+        transform: translateX(15px) translateY(-8px);
+        opacity: 0.85;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+        opacity: 0.45;
+    }
+}
+
+
+/* ==========================================
+   TEXT
+   ========================================== */
+
+#openingScreen .small-title {
+    position: relative;
+    z-index: 30;
+    margin-top: 115px !important;
+    margin-bottom: 20px !important;
+    font-size: 17px !important;
+    letter-spacing: 7px !important;
+    color: #55a9dc !important;
+}
+
+#openingScreen .opening-content h1 {
+    position: relative;
+    z-index: 30;
+    margin: 0 !important;
+    font-family: "Cormorant Garamond", serif !important;
+    font-size: clamp( 45px, 8vw, 72px) !important;
+    line-height: 1 !important;
+    font-weight: 500 !important;
+    color: #2879b8 !important;
+    text-shadow: 0 3px 10px rgba( 50, 120, 170, 0.08);
+}
+
+#openingScreen .opening-line {
+    width: 100px !important;
+    height: 1px !important;
+    margin: 25px auto !important;
+    background: linear-gradient( 90deg, transparent, #4ba5db, transparent) !important;
+}
+
+#openingScreen .event-title {
+    position: relative;
+    z-index: 30;
+    margin: 0 !important;
+    font-family: "Cormorant Garamond", serif !important;
+    font-size: clamp( 25px, 5vw, 38px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: 1px !important;
+    color: #315b78 !important;
+}
+
+
+/* ==========================================
+   BABY PHOTO
+   ========================================== */
+
+#openingScreen .opening-photo {
+    position: relative;
+    z-index: 30;
+    width: 285px !important;
+    height: 285px !important;
+    margin: 38px auto 32px !important;
+    padding: 7px !important;
+    border-radius: 50% !important;
+    background: linear-gradient( 135deg, #ffffff, #d7edf7, #ffffff, #a9d5e8, #ffffff) !important;
+    box-shadow: 0 15px 40px rgba(64, 120, 150, 0.20), 0 0 0 7px rgba(255, 255, 255, 0.75), 0 0 35px rgba(145, 205, 230, 0.30);
+    animation: photoFloat 4s ease-in-out infinite;
+}
+
+#openingScreen .opening-photo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    border-radius: 50% !important;
+    border: 3px solid white !important;
+    filter: saturate(1.08) brightness(1.04) contrast(1.02) !important;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+#openingScreen .opening-photo:hover img {
+    transform: scale(1.06);
+    filter: saturate(1.15) brightness(1.08) contrast(1.03);
+}
+
+@keyframes photoFloat {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-7px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================
+   OPEN BUTTON
+   ========================================== */
+
+#openingScreen .open-button {
+    position: relative;
+    z-index: 50;
+    width: min(340px, 85%);
+    min-height: 62px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient( 135deg, #2f83bd, #2877b1) !important;
+    color: white !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(42, 119, 177, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#openingScreen .open-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 17px 35px rgba(42, 119, 177, 0.32);
+}
+
+#openingScreen .open-button:active {
+    transform: scale(0.97);
+}
+
+
+/* ==========================================
+   BOTTOM DECORATION
+   ========================================== */
+
+#openingScreen .opening-bottom-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    color: #3d718f;
+}
+
+#openingScreen .opening-bottom-decoration span {
+    width: 55px;
+    height: 1px;
+    background: linear-gradient( 90deg, transparent, #8bbbd3);
+}
+
+#openingScreen .opening-bottom-decoration span:last-child {
+    background: linear-gradient( 90deg, #8bbbd3, transparent);
+}
+
+#openingScreen .opening-bottom-decoration strong {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 600px) {
+    #openingScreen {
+        padding: 14px !important;
+    }
+    #openingScreen .opening-content {
+        width: 94vw;
+        height: 88dvh;
+        min-height: 570px;
+        padding: 35px 20px 25px;
+        border-radius: 34px;
+    }
+    #openingScreen .dragon-decoration {
+        width: 300px !important;
+        height: 190px !important;
+        top: -8px !important;
+    }
+    #openingScreen .animated-dragon {
+        width: 245px !important;
+        height: 180px !important;
+    }
+    #openingScreen .dragon-glow {
+        width: 220px;
+        height: 150px;
+    }
+    #openingScreen .small-title {
+        margin-top: 100px !important;
+        font-size: 14px !important;
+        letter-spacing: 5px !important;
+    }
+    #openingScreen .opening-content h1 {
+        font-size: 48px !important;
+    }
+    #openingScreen .event-title {
+        font-size: 26px !important;
+    }
+    #openingScreen .opening-photo {
+        width: 230px !important;
+        height: 230px !important;
+        margin: 30px auto 27px !important;
+    }
+    #openingScreen .open-button {
+        width: 85%;
+        min-height: 56px;
+        font-size: 15px !important;
+    }
+}
+
+
+/* ==========================================
+   VERY SMALL PHONE
+   ========================================== */
+
+@media (max-width: 380px) {
+    #openingScreen .opening-content {
+        min-height: 540px;
+        height: 90dvh;
+    }
+    #openingScreen .dragon-decoration {
+        width: 260px !important;
+        height: 170px !important;
+    }
+    #openingScreen .animated-dragon {
+        width: 215px !important;
+        height: 155px !important;
+    }
+    #openingScreen .small-title {
+        margin-top: 88px !important;
+    }
+    #openingScreen .opening-content h1 {
+        font-size: 42px !important;
+    }
+    #openingScreen .event-title {
+        font-size: 23px !important;
+    }
+    #openingScreen .opening-photo {
+        width: 210px !important;
+        height: 210px !important;
+        margin-top: 24px !important;
+        margin-bottom: 22px !important;
+    }
+}
+
+
+/* ==========================================
+   MUSIC BUTTON
+   ========================================== */
+
+.music-button {
+    position: fixed !important;
+    right: 18px !important;
+    bottom: 18px !important;
+    width: 55px !important;
+    height: 55px !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+    border-radius: 50% !important;
+    background: rgba( 255, 255, 255, 0.92) !important;
+    box-shadow: 0 8px 25px rgba(50, 100, 130, 0.20);
+    cursor: pointer;
+}
+
+
+/* Диск */
+
+.music-disc {
+    position: relative;
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    background: radial-gradient( circle, #ffffff 0 12%, #5bafd9 13% 20%, #2f83bd 21% 55%, #1d638f 56% 100%);
+    box-shadow: 0 3px 8px rgba(40, 100, 140, 0.25);
+}
+
+
+/* Дуу тоглож байх үед эргэнэ */
+
+.music-button.playing .music-disc {
+    animation: musicRotate 3s linear infinite;
+}
+
+@keyframes musicRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Дискний гол */
+
+.disc-center {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: white;
+}
+
+
+/* ==========================================
+   MAIN PAGE AFTER OPENING
+   ========================================== */
+
+body {
+    overflow-x: hidden;
+}
+
+.main-invitation {
+    width: 100%;
+    min-height: 100vh;
+}
